@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+			// props的拥有者是其调用方,或者说在结构上是其parent
+			// state是私属于当前组件的，state的值是可变的
+			// props专情，state花心
+			// 修改state - setState()
+
+			var Hello = React.createClass({
+				getInitialState: function() {
+					alert('init');
+					return {
+						opacity: 1.0,
+						fontSize: '12px',
+						color: '#f00'
+					}
+				},
+				render: function() {
+					return <div style={{opacity: this.state.opacity, fontSize: this.state.fontSize, color: this.state.color}}>Hello {this.props.name}</div>;
+				},
+				componentWillMount: function() {
+					alert('will')
+				},
+				componentDidMount: function() {
+					alert('did')
+
+					// var _self = this;
+					window.setTimeout(function() {
+						this.setState({
+							opacity: 0.5,
+							fontSize: '44px'
+						})
+					}.bind(this),1000)
+
+					// state值的每次变化，都会导致当前组件从mount变为update状态
+				}
+			});
+
+			ReactDOM.render(
+        <Hello name="World" />,
+				document.getElementById('example')
+			);
+
+    </script>
+  </body>
+</html>
