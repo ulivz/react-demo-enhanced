@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+	var LikeButton = React.createClass({
+		getInitialState() {
+			return {
+				liked: true,
+				titleColor: {
+					'color': '#000'
+				}
+			}
+		},
+		handleClick: function (event) {
+			this.setState(
+				{
+					liked: !this.state.liked,
+					titleColor: {
+						color: this.state.titleColor.color === 'rgb(255, 0, 0)' ? 'rgb(0, 0, 0)' : 'rgb(255, 0, 0)'
+					}
+				}
+			);
+		},
+		render: function () {
+			var text = this.state.liked ? 'like' : 'haven\'t liked';
+			return (
+				<div style={this.state.titleColor}>
+					You {text} this. Click to toggle.
+					<div>
+						<input type="button" value="change" onClick={this.handleClick}/>
+					</div>
+				</div>
+			);
+		}
+	});
+
+	ReactDOM.render(
+		<LikeButton />,
+		document.getElementById('example')
+	);
+</script>
+</body>
+</html>
+

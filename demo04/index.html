@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <style>
+      .tag{
+        color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+			var langs = ['TypeScript', 'JavaScript', 'Python'];
+
+			// Note:
+      // The first letter of the component-class must be capitalized
+      // Component-class can only contain a top-level tag
+      var HelloMessage = React.createClass({
+        render: function() {
+          return <ul>{
+            // if there is not key， react will throw a warning:
+            // Warning: Each child in an array or iterator should have a unique "key" prop
+            // This is related to the dom-diff algorithm of react
+            // when map the dom, react will generate the virtual dom tree according to data-reactid
+            // if you do not manually add the unique constant key, react is unable to record your dom operation
+						this.props.langs.map(function (lang, index) {
+							// Note:
+              // The class attribute needs to be written as "className", and the for attribute needs to be written as "htmlFor", because the class and for are reserved words for JavaScript.
+              return <li className="tag" key={index}>{lang}</li>
+						})
+          }</ul>;
+        }
+      });
+
+      ReactDOM.render(
+        <HelloMessage langs={langs} />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

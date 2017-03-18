@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="../build/react.js"></script>
+	<script src="../build/react-dom.js"></script>
+	<script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+
+	var title = 'I am Title';
+
+	var MyComponent = React.createClass({
+		handleClick: function () {
+			console.log(1);
+			this.refs.myTextInput.focus();
+		},
+		changeTitleColor() {
+			if (this.refs.myTitle.style.color !== 'rgb(255, 0, 0)') {
+				this.refs.myTitle.style.color = 'rgb(255, 0, 0)';
+			} else {
+				this.refs.myTitle.style.color = 'rgb(0, 0, 0)';
+			}
+		},
+		render: function () {
+			return (
+				<div>
+					<input type="text" ref="myTextInput"/>
+					<span ref="myTitle">{this.props.title}</span>
+					<input type="button" value="Focus the text input" onClick={this.handleClick}/>
+					<input type="button" value="Change the title's color" onClick={this.changeTitleColor}/>
+				</div>
+			);
+		},
+		componentDidMount() {
+			var timer;
+			var timeout = 1000;
+			var delayTime = setTimeout(function () {
+				clearInterval(timer);
+				clearTimeout(delayTime)
+			}, timeout)
+			timer = setInterval(function () {
+				this.changeTitleColor()
+			}.bind(this), 100)
+		}
+	});
+
+	ReactDOM.render(
+		<MyComponent title={title}/>,
+		document.getElementById('example')
+	);
+</script>
+</body>
+</html>
