@@ -4,6 +4,8 @@ These demos are purposely written in a simple and clear style. You will find no 
 
 ## Related Projects
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ulivz/react-demo-enhanced.svg)](https://greenkeeper.io/)
+
 - [Flux Demo](https://github.com/ruanyf/extremely-simple-flux-demo)
 - [Webpack Demos](https://github.com/ruanyf/webpack-demos)
 - [React Router Tutorial](https://github.com/reactjs/react-router-tutorial)
