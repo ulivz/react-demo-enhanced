@@ -10,7 +10,7 @@
   "author": "ruanyf",
   "license": "ISC",
   "dependencies": {
-    "browserify": "~9.0.3",
+    "browserify": "~15.0.0",
     "literalify": "~0.4.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0"
